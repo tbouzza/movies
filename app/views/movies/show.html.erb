@@ -1,0 +1,18 @@
+<div class="container">
+  <h1><%= @movie.name %></h1>
+
+  <p>Duration: <%= @movie.duration %></p>
+
+
+  <h2>Meet our cast</h2>
+
+  <ul class="list-group">
+    <% @movie.roles.each do |role| %>
+    <li class="list-group-item">
+      <p><%= role.title %> : <%= role.actor.name %></p>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+
