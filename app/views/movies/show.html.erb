@@ -1,15 +1,30 @@
 <div class="container">
+
   <h1><%= @movie.name %></h1>
 
   <p>Duration: <%= @movie.duration %></p>
 
+  <%= cl_image_tag @movie.photo.key, height: 300, width: 400, crop: :fill %>
 
   <h2>Meet our cast</h2>
+
+  <h3>Add a member to the cast</h3>
+  <%= simple_form_for [@movie, @role] do |f| %>
+    <%= f.input :title %>
+    <%= f.association :actor %>
+
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+
+
+
+
 
   <ul class="list-group">
     <% @movie.roles.each do |role| %>
     <li class="list-group-item">
-      <p><%= role.title %> : <%= role.actor.name %></p>
+      <p><%= role.title %> : <%= role.actor.name %> </p>
+      <%= cl_image_tag role.actor.photo.key, height: 100, width: 100, crop: :fill  %>
     </li>
     <% end %>
   </ul>

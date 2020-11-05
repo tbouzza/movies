@@ -32,15 +32,19 @@ puts "Creating the actors"
 
 actors_array = []
 
-actors_array << { name: "Scarlet Johansen" }
-actors_array << { name: "Jessica Alba" }
-actors_array << { name: "Beyonce Knowles" }
-actors_array << { name: "Ryan Reynolds" }
-actors_array << { name: "Rayan Gosling" }
-actors_array << { name: "Shahrukh Khan" }
+actors_array << [{ name: "Scarlet Johansen" }, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.lvgtgD9n0oaEUYJEvjU2_wHaLK%26pid%3DApi&f=1"]
+actors_array << [{ name: "Jessica Alba" }, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.explicit.bing.net%2Fth%3Fid%3DOIP.HmKogtQjdwQm7hlb_Rs2LAHaJQ%26pid%3DApi&f=1']
+actors_array << [{ name: "Beyonce Knowles" }, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.D9AboN8cUfiQ2HjAhassLgHaLH%26pid%3DApi&f=1"]
+actors_array << [{ name: "Ryan Reynolds" }, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Cbj5SC1UGOii6hYfPuq2-gHaK-%26pid%3DApi&f=1']
+actors_array << [{ name: "Rayan Gosling" }, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Cbj5SC1UGOii6hYfPuq2-gHaK-%26pid%3DApi&f=1']
+actors_array << [{ name: "Shahrukh Khan" }, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Cbj5SC1UGOii6hYfPuq2-gHaK-%26pid%3DApi&f=1']
 
 actors_array.each do |attributes|
-  actor = Actor.create! attributes
+  actor = Actor.new attributes[0]
+
+  file = URI.open(attributes[1])
+  actor.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+  actor.save!
   puts "created #{actor.name}"
 end
 

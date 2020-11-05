@@ -1,0 +1,17 @@
+
+<div class="container">
+  <h1>Add A Movie</h1>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <%= simple_form_for @movie do |f| %>
+
+        <%= f.input :name %>
+        <%= f.input :duration %>
+        <%= f.input :photo, as: :file %>
+
+        <%= f.button :submit, class: 'btn btn-primary' %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
